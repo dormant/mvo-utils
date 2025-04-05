@@ -1,0 +1,11 @@
+#!/bin/csh -f
+#
+
+echo "Disk space"
+df -h | head -1
+df -h | grep MVOSeisD6
+df -h | grep Seismic_Data
+
+echo "Disk usage"
+du -h -d 0 /mnt/mvofls2/Seismic_Data/WAV/DSNC_/2024/*
+du -h -d 0 /mnt/mvofls2/Seismic_Data/rbuffers/

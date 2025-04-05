@@ -1,0 +1,81 @@
+#!/bin/csh -f
+#
+# script to calculate and display earthquake counts for 
+# the  n days week from now. Calls volcstat. Requires julday/calday
+#
+# RCS, 2021-02-03 Added redirect of stdout to volcstat call
+# RCS, 2021-09-10 Based on PJS's weekly_counts
+#
+
+echo "counts <ndays> <hourUTC> <YYYYMMDD>"
+
+# Set date, time and number of days from arguments
+#
+if($#argv < 3) then
+    set yyyymmdd = `date -u +%Y%m%d`
+else
+	set yyyymmdd = $argv[3]
+endif
+if($#argv < 2) then
+	set hr = 13
+else
+	set hr = $argv[2]
+endif
+if($#argv < 1) then
+	set days = 7 
+else
+	set days = $argv[1]
+endif
+
+# prepare start and end date/times:
+set yyyymm = `echo $yyyymmdd | cut -c 1-6`
+set yyyy = `echo $yyyymmdd | cut -c 1-4`
+set mm = `echo $yyyymmdd | cut -c 5-6`
+set dd = `echo $yyyymmdd | cut -c 7-8`
+set hh = `date -u +%_H`
+
+set mmsddsyyyy = "$mm $dd $yyyy"
+
+set jday2 = `echo $mmsddsyyyy | xargs julday | grep Julian | awk '{print $3}'`
+@ jday1 = $jday2 - $days
+# check if we straddle a year boundary
+if ( $jday1 < 1 ) then
+set jday1a = $jday1
+set this_year = `date -u +%Y`
+@ last_year = $this_year - 1
+set last_day_of_year = `julday 12 31 $last_year | grep Julian | awk '{print $3}'`
+@ jday1 = $last_day_of_year + $jday1a
+set yyyymmdd1 = `calday $jday1 $last_year | grep Cal | awk '{print $5 $3 $4}'`
+set start_date = `echo $yyyymmdd1$hr`
+#
+else
+set yyyymmdd1 = `calday $jday1 | grep Cal | awk '{print $5 $3 $4}'`
+set start_date = `echo $yyyymmdd1$hr`
+endif
+#
+# Need to take one hour off the end date which is a real pain
+# RCS, 2024-10-04
+set hr = $hr-1
+set end_date = `echo $yyyymm$dd$hr`
+#
+# make sure we're in a directory we can write to:
+cd ~/seismo/WOR
+# run volcstat
+volcstat > /dev/null 2>&1 << EOF
+
+$start_date
+$end_date
+
+ehlrtx
+n
+
+EOF
+# display results
+set disp_start_date = `echo $start_date | awk '{print substr($1,1,4),substr($1,5,2),substr($1,7,2),substr($1,9,2)}' | sed s/\ /-/ | sed s/\ /-/`
+set disp_start_day = `date --date="$disp_start_date" +%a`
+
+set disp_end_date = `echo $end_date | awk '{print substr($1,1,4),substr($1,5,2),substr($1,7,2),substr($1,9,2)}' | sed s/\ /-/ | sed s/\ /-/`
+set disp_end_day = `date --date="$disp_end_date" +%a`
+
+echo "Counts for the period "$disp_start_day" "$disp_start_date":00 UTC to "$disp_end_day" "$disp_end_date":00 UTC"
+cat volcstat_counts_total.out | sed s'/e    /LPRFs/'g | sed s'/r  /RFs/'g | sed s'/h      /Hybrids/'g | sed s'/t  /VTs/'g | sed s'/l  /LPs/'g | sed s'/x     /Expls./'g

@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Set up an environment variable with globals needed in scripts
+#
+# R.C. Stewart 2022-09-15
+
+mode="interactive"
+
+case "$OSTYPE" in
+  solaris*) os="solaris" ;;
+  darwin*)  os="mac" ;;
+  linux*)   os="linux" ;;
+  bsd*)     os="bsd" ;;
+  msys*)    os="win" ;;
+  cygwin*)  os="windows" ;;
+  *)        os="unknown" ;;
+esac
+
+host=`hostname`
+
+if grep -qs '/mnt/mvofls2/Seismic_Data ' /proc/mounts; then
+    where="MVO"
+elif grep -qs '/mnt/nas2/dormant' /proc/mounts; then
+    where="home"
+#elif grep -qs '/media/${USER}/Travelling' /proc/mounts; then
+#    where="travelling"
+#elif grep -qs '/Volumes/Travelling' /proc/mounts; then
+#    where="travelling"
+else
+    where="unknown"
+fi
+
+
+what="mvo"
+
+setup="$mode|$os|$host|$where|$what"
+echo $setup
+
+#export SETUP=$setup

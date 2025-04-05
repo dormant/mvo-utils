@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+if [ -z "$1" ]
+then
+	echo "Argument needed, twit!"
+else
+	idString=$1
+
+    fileIn="${idString}.tmp"
+    fileOut="${idString}.txt"
+    fileOut2="${idString}-formatted.txt"
+
+    mulplt2vtse.pl $fileIn > $fileOut
+    mulplt2vtse2.pl $fileIn > $fileOut2
+    
+    echo -n "Number of events: "
+    mulplt2vtse.pl $fileIn $fileOut | wc -l
+
+    echo -n "First event: "
+    mulplt2vtse2.pl $fileIn | head -1
+    echo -n "Last event:  "
+    mulplt2vtse2.pl $fileIn | tail -1
+
+fi

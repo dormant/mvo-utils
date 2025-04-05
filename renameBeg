@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+stringStart=$1
+shift;
+
+for file in "$@" ; do
+    rename "s/^/$stringStart/" $file
+done

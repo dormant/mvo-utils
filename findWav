@@ -11,7 +11,7 @@ my $numArgs = $#ARGV + 1;
 
 if( $numArgs < 2 ){ 
     print "Not enough arguments", "\n";
-    print "usage: findWav yyyy-mm-dd hh:mm:ss", "\n";
+    print "usage: findWav yyyy-mm-dd hh:mm:ss <window>", "\n";
 } else {
 
     my $eventDate = $ARGV[0];

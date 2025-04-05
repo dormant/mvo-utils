@@ -7,5 +7,5 @@ df -h | grep MVOSeisD6
 df -h | grep Seismic_Data
 
 echo "Disk usage"
-du -h -d 0 /mnt/mvofls2/Seismic_Data/WAV/DSNC_/2024/*
+du -h -d 0 /mnt/mvofls2/Seismic_Data/WAV/DSNC_/2025/*
 du -h -d 0 /mnt/mvofls2/Seismic_Data/rbuffers/

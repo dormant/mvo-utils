@@ -13,7 +13,7 @@ use strict;
 
 # Get files from earthworm rather than via dome so user can delete in mulplt 
 #
-# Modified by RCS, 2022-12-09, to run fetchPlot to create local plot of triggered event
+# Modified by RCS, 2022-12-09, to run getnPlot to create local plot of triggered event and display it.
 
 # Configuration
 #my $debug           = 0; 

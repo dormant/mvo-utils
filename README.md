@@ -19,6 +19,12 @@ With no arguments, it lists the counts for the last seven days up to 13:00 UTC (
 * hourUTC: Time of end of counting period (default 13)
 * YYYYMMDD: Date of end of counting period (default today)
 
+### Issues
+
+*counts* does not work on opsproc3 because *volcstat* doesn't work.
+
+There is an alias to run counts on opsproc2 over ssh: *countsop2*. It needs to be run twice to give the correct results.
+
 ## diary2doit.pl
 ## dodu
 ## fetch_events

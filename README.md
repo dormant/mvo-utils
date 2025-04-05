@@ -41,6 +41,13 @@ There is an alias to run counts on opsproc2 over ssh: *countsop2*. It needs to b
 ## mulplt2vtse.pl
 ## rbuffers2dsnc.pl
 ## renameBeg
+
+Renames file(s), adding a string to the beginning of every file name.
+
+### Example usage
+
+*renameBeg TextAtStart \*.jpg*
+
 ## scpfrop2
 ## scptoop2
 ## selectTest.pl

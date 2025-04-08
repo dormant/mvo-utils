@@ -55,6 +55,15 @@ alias fe='fetch_events'
 alias fe0='fetch_events.1.pl'
 ```
 
+## fetchHelis.sh
+
+* Copies helicorder montages for one day to current directory.
+* Used in string analysis.
+
+### Usage
+
+*fetchHelis.sh yyyymmdd*
+
 ## fetchWWLLNlast24h.sh, fetchWWLLNyesterday.sh
 
 * Fetch data from the WWLLN Volcanic lightning monitor.
@@ -96,6 +105,15 @@ Lists information about every miniseed file in the current directory.
 ## mulplt2vtse, mulplt2vtse2.pl, mulplt2vtse.pl
 
 Scripts used when processing VT strings with *mulplt*.
+
+### Usage
+
+*mulplt2vtse yyyymmdd-hhmm*
+
+* yyyymmdd-mmhh: name of input .tmp file (without eextension) created from mulplt.
+* yyyymmdd-hhmm.txt: Output text file to be saved for string analysis.
+* yyyymmdd-hhmm.txt2: Alternative output text file.
+
 
 ## rbuffers2dsnc.pl
 

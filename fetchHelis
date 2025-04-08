@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+if [ "$1" == "-h" ] || [ $# -eq 0 ]; then
+  echo "Usage: `basename $0` <yyymmdd> [stacode]"
+  exit 0
+fi
+
+day=${1}
+sta=${2}
+searchString="*${sta}*${day}*"
+find /mnt/mvofls2/Seismic_Data/monitoring_Data/helicorder_plots_wide -name "${searchString}" -exec cp "{}" ./  \;
+rename 's/.gif/-wide.gif/g' *.gif
+find /mnt/mvofls2/Seismic_Data/monitoring_Data/helicorder_plots -name "${searchString}" -exec cp "{}" ./  \;
+find /mnt/mvofls2/Seismic_Data/monitoring_Data/helicorder_plots_multi -name "${searchString}" -exec cp "{}" ./  \;

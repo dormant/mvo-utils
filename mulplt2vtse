@@ -8,13 +8,11 @@ else
 
     fileIn="${idString}.tmp"
     fileOut="${idString}.txt"
-    fileOut2="${idString}-formatted.txt"
 
     mulplt2vtse.pl $fileIn > $fileOut
-    mulplt2vtse2.pl $fileIn > $fileOut2
-    
     echo -n "Number of events: "
     mulplt2vtse.pl $fileIn $fileOut | wc -l
+
 
     echo -n "First event: "
     mulplt2vtse2.pl $fileIn | head -1

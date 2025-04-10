@@ -69,7 +69,11 @@ alias fe0='fetch_events.1.pl'
 * Fetch data from the WWLLN Volcanic lightning monitor.
 * Output stored in */mnt/mvofls2/Seismic_Data/monitoring_data/other/wwlln/*.
 * Run as cronjobs on *opsproc3*.
-* 
+
+## find_corrupt_helis
+
+* Uses *exiftool* to find corrupt helicorder plots on the network drive.
+
 ## findWav
 
 * Finds WAV files in the continous *SEISAN* database for a given date, time and duration.

@@ -1,0 +1,11 @@
+#!/bin/bash
+# Original by Paddy Smith
+# Modified by RCS, 2023-06-12, 2025-04-10
+#
+if mount | grep /mnt/earthworm3/monitoring_data > /dev/null; then
+    today=`date +%Y%m%d`
+    find /mnt/earthworm3/monitoring_data -type f \( -iname \*.png -o -iname \*.jpg -o -iname \*.gif \) -print0 | xargs -0 exiftool -q -a -warning
+else
+    echo "Earthworm share not mounted"
+    exit 0
+fi

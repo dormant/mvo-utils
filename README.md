@@ -70,9 +70,9 @@ alias fe0='fetch_events.1.pl'
 * Output stored in */mnt/mvofls2/Seismic_Data/monitoring_data/other/wwlln/*.
 * Run as cronjobs on *opsproc3*.
 
-## find_corrupt_helis
+## findCorruptHelis
 
-* Uses *exiftool* to find corrupt helicorder plots on the network drive.
+* Uses *exiftool* to find corrupt helicorder plots on *earthworm03*.
 
 ## findWav
 
@@ -101,7 +101,7 @@ alias fe0='fetch_events.1.pl'
 
 * Downloaded script to display Caps Lock status in Linux toolbar.
 * Needs to be added to toolbar.
-*
+
 ## mseedTest.py
 
 Lists information about every miniseed file in the current directory.

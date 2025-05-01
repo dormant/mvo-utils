@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Does full or incremental tar backup
+# If it has any argument, it will do an incremental backup
+# Should be run as root
+#
+# R.C. Stewart 2025-05-01
+
+host=`hostname`
+dirBackup='/mnt/mvohvs3/MVOSeisD6/backups'
+
+if [ "$host" == "winston1" ]; then
+    excludes='--exclude="/home/mvo/data"'
+elif [ "$host" == "winston2" ]; then
+else
+fi
+
+
+if [ -n "$1" ]; then
+    tarFile=`date +"%Y%m%d"`-$host-level1.tar.gz
+else
+    tarFile=`date +"%Y%m%d"`-$host-level0.tar.gz
+fi
+
+tar -czf $dirBackup/$tarFile $excludes -g $dirBackup/$host.snar /home >> /dev/null 2&>1

@@ -153,6 +153,12 @@ Sets up an environment variable, *SETUP*, which can be used by other scripts.
 
 This was an attempt to mimic something I found useful in MATLAB. This approach was never implemented in other scripts.
 
+## tarbackup
+
+* Creates full and incremental backups for Linux machines
+* Needs to run as *root*.
+* Backups stored in */mnt/mvohvs3/MVOSeisD6/backups/automatic/*.
+
 ## twenties2mseed.py
 
 * Creates 24-hour single-channel miniseed files from 20-minute *SEISAN* files.

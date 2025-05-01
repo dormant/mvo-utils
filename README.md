@@ -156,7 +156,7 @@ This was an attempt to mimic something I found useful in MATLAB. This approach w
 ## tarbackup
 
 * Creates full and incremental backups for Linux machines
-* Needs to run as *root*.
+* Runs as a root cronjob.
 * Backups stored in */mnt/mvohvs3/MVOSeisD6/backups/automatic/*.
 
 ## twenties2mseed.py

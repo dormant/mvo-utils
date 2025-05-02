@@ -160,6 +160,16 @@ Sets up an environment variable, *SETUP*, which can be used by other scripts.
 
 This was an attempt to mimic something I found useful in MATLAB. This approach was never implemented in other scripts.
 
+## sync_seismic_winston1
+
+* Synchronises seismic data on winston1 with /mnt/mvofls2/Seismic_Data.
+* Runs as a cronjob on *winston1* every 20 minutes by user *mvo*.
+```
+# Sync mseed and rbuffers files with mounted volume
+1,21,41   *   *   *   *   /home/mvo/bin/sync_seismic_winston1 >> /home/mvo/log/sync_seismic_winston1-`date +\%Y\%m\%d`.log 2>&1
+```
+
+
 ## tarbackup
 
 * Creates full and incremental backups for Linux machines

@@ -54,10 +54,17 @@ The year is hard-wired in the script.
 alias fe='fetch_events'
 alias fe0='fetch_events.1.pl'
 ```
+## fetchHelis
+
+* Copies helicorder plots and montages for one day to current directory.
+
+### Usage
+
+*fetchHelis yyyymmdd STA*
 
 ## fetchHelis.sh
 
-* Copies helicorder montages for one day to current directory.
+* Copies helicorder montages and MSS1 helicorder for one day to current directory.
 * Used in string analysis.
 
 ### Usage

@@ -8,11 +8,11 @@
 
 host=`hostname`
 user=`whoami`
-dirBackup='/mnt/mvohvs3/MVOSeisD6/backups'
+dirBackup='/mnt/mvohvs3/MVOSeisD6/backups/cron'
 
 if [ "$host" == "winston1" ]; then
     if [ "$user" == "mvo" ]; then
-        excludes='--exclude="./data"'
+        excludes='--exclude="/home/mvo/data"'
     else
         excludes=''
     fi

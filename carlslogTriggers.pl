@@ -9,7 +9,7 @@ use strict;
 use warnings;
 
 my $dirCarlslogs = '/mnt/mvofls2/Seismic_Data/monitoring_data/carlslogs';
-my $dirTrigs = '/mnt/mvofls2/Seismic_Data/monitoring_data/events/triggerStuff/triggerLists';
+my $dirTrigs = '/mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerLists';
 
 opendir(DIR, $dirCarlslogs);
 my @files = grep { /carlsub/ } readdir(DIR);

@@ -3,11 +3,18 @@
 Various scripts for processing and analysing MVO seismic data.
 
 
-## carlslogTriggers.pl
+## carlslogTriggers.pl, carlslogTriggersPlot.sh
 
 * Extracts trigger information from *earthworm* carlslog files.
-* Stored in daily text files in */mnt/mvofls2/Seismic_Data/monitoring_data/events/triggerStuff/triggerLists*.
-* Runs daily as a cronjob on *opsproc3*.
+* Plots triggering events using *getnPlot*.
+* Trigger lists stored in daily text files in */mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerLists*.
+* Trigger plots stored in */mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerPlots*.
+* Run daily as cronjobs on *opsproc3*.
+```
+# Collect earthworm triggered event list
+7 4 * * * /home/seisan/src/utils/carlslogTriggers.pl >/home/seisan/log/carlslogTriggers.log 2>&1
+17 4 * * * bash -i /home/seisan/src/utils/carlslogTriggersPlot.sh >/home/seisan/log/carlslogTriggersPlot.log 2>&1
+```
 
 ## counts
 

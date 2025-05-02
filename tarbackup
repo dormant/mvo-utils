@@ -2,7 +2,6 @@
 #
 # Does full or incremental tar backup
 # If it has any argument, it will do an incremental backup
-# Should be run as root
 #
 # R.C. Stewart 2025-05-01
 
@@ -19,6 +18,8 @@ if [ "$host" == "winston1" ]; then
 elif ["$host" == "opsrm04"] || ["$host" == "opsrm05"] || ["$host" == "opsrm06"]; then
     excludes=''
 elif ["$host" == "opsproc3"]; then
+    excludes='--exclude="/home/seisan/data" --exclude="/home/seisan/Dropbox" --exclude="/home/seisan/tmp*" --exclude="/home/seisan/veryTmp*"'
+else
     excludes=''
 fi
 

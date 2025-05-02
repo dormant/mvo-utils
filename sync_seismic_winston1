@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# sync_seismic_winston1
+#
+# Shell script to do syncs for seismic directories on winston1
+#
+# Version 1.1
+#
+# Rod Stewart, 2-May-2025
+
+echo "======================================== BEGIN: " `date`
+START_TIME=`date +%s`
+
+# mseed data
+/usr/bin/rsync -uarv /home/mvo/data/mseed/ /mnt/mvohvs3/MVOSeisD6/mseed/
+
+# continuous rbuffer data
+/usr/bin/rsync -uav /home/mvo/data/rbuffers/ /mnt/mvofls2/Seismic_Data/rbuffers/
+/usr/bin/rsync -uav /home/mvo/data/rbuffers24/ /mnt/mvofls2/Seismic_Data/rbuffers24/
+
+# helicorder plots - NEEDS EDITING EVERY YEAR
+#/usr/bin/rsync -uav --include="*2020*.gif" --exclude="*" /home/mvo/data/monitoring_data/helicorder_plots/ /mnt/mvofls2/Seismic_Data/monitoring_data/helicorder_plots/2020/
+#/usr/bin/rsync -uav --include="*2021*.gif" --exclude="*" /home/mvo/data/monitoring_data/helicorder_plots/ /mnt/mvofls2/Seismic_Data/monitoring_data/helicorder_plots/2021/
+
+# spectrogram plots - NEEDS EDITING EVERY YEAR
+#/usr/bin/rsync -uav --include="*2020*.gif" --exclude="*" /home/mvo/data/monitoring_data/sgram/ /mnt/mvofls2/Seismic_Data/monitoring_data/sgram/2020/
+#/usr/bin/rsync -uav --include="*2021*.gif" --exclude="*" /home/mvo/data/monitoring_data/sgram/ /mnt/mvofls2/Seismic_Data/monitoring_data/sgram/2021/
+
+END_TIME=`date +%s`
+ELAPSED_TIME=`expr $END_TIME - $START_TIME`
+
+echo "======================================== END: " `date`
+echo "======================================== ELAPSED TIME: " ${ELAPSED_TIME} " seconds"

@@ -1,0 +1,68 @@
+#!/usr/bin/perl -w
+use strict;
+
+# Name:           reg_event
+# Source:         /data2/development/reg_event/reg_event.pl
+# Arguments:      none
+# Calls:          count_event, ampengfft
+# Returns:        0 on success 1 on failure
+
+# Run automaticaly from mulplt on each event that is registered:
+#   Finds current event by reading mulplt.out
+#   Moves WAV file from working directory (mulplt will try to copy it and give an error message)
+#	Runs ampengfft on event and updates s-file if required (see below).
+#   Adds event to count files in directory where the web program sees them.
+
+# (called reg_event rather than register_event because mulplt only reads 10 chars)
+
+# Configuration
+my $sfile_path      = "$ENV{SEISAN_TOP}/REA/MVOE_";
+my $wavfile_path    = "$ENV{SEISAN_TOP}/WAV/MVOE_";
+
+my $ampengfft = 1;  # Switch to 1 for automatic ampengfft
+
+# Local variables
+my $line;
+my ($year,$month,$time);  # Bits of date needed for sfile path/filename
+my ($wavfile,$sfile);
+
+
+# Get WAV filename from mulplt.out
+# First get type 6 line - grep returns status 1 if no match and 2 on error
+$line = `grep '6\$' mulplt.out`;
+die "ERROR: reg_event: grep: no match in mulplt.out\n" if ($?==256);
+die "ERROR: reg_event: grep: $line\n" if ($?==512);
+
+# Then parse line to extract filename and bits for sfile directory/filename
+unless ($line =~ /((\d\d\d\d)\-(\d\d)\-(\d\d\-\d\d\d\d\-\d\d).{11}) +6$/){
+	die "ERROR: reg_event: unrecognised type 6 line: $line\n";
+}
+$wavfile=$1; $year=$2; $month=$3; $time=$4;
+
+# Move wavfile to WAV directory
+print `mkdir $wavfile_path/$year` unless (-e "$wavfile_path/$year");
+die "ERROR: reg_event: problem making $wavfile_path/$year\n" if ($?);
+print `mkdir $wavfile_path/$year/$month` unless (-e "$wavfile_path/$year/$month");
+die "ERROR: reg_event: problem making $wavfile_path/$year/$month\n" if ($?);
+print `mv $wavfile $wavfile_path/$year/$month/$wavfile`;
+die "ERROR: reg_event: problem moving $wavfile\n" if ($?);
+
+# Find s-file name - can't tell if L or R from mulplt.out
+$sfile = `ls $sfile_path/$year/$month/$time?.S$year$month`;
+die "ERROR: reg_event: $wavfile ls: s-file not found\n" if ($?);
+
+# If not a local event then done
+exit(0) unless ($sfile =~ /\-\d\dL\.S\d\d\d\d/);
+
+# Use system call to run count_event
+print `count_event $sfile`;
+die "ERROR: reg_event: $wavfile count_event problem\n" if ($?);
+
+# Use system call to run ampengfft
+if ($ampengfft){
+	print `ampengfft $sfile`;
+	die "ERROR: reg_event: $wavfile ampengfft problem\n" if ($?);
+}
+
+exit(0);
+

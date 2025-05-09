@@ -139,6 +139,11 @@ Scripts used when processing VT strings with *mulplt*.
 * Compresses each file using *bzip2*.
 * Runs once a month as a cronjob on *opsproc3*.
 
+## reg_event
+
+* Used by *mulplt* when registering events.
+* No idea who wrote this.
+
 ## renameBeg
 
 Renames file(s), adding a string to the beginning of every file name.

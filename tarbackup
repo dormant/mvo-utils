@@ -28,5 +28,6 @@ else
     tarFile=$HOSTNAME-$USER-`date +"%Y%m%d"`-level0.tar.gz
 fi
 
+snarFile=$HOSTNAME-$USER.snar
 
-tar -czf $dirBackup/$tarFile "${excludes}" -g $dirBackup/$HOSTNAME-$USER.snar /home/$USER >> /dev/null 2&>1
+tar -czf $dirBackup/$tarFile "${excludes}" -g $dirBackup/$snarFile /home/$USER >> /dev/null 2&>1

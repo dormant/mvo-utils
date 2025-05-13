@@ -128,7 +128,7 @@ Scripts used when processing VT strings with *mulplt*.
 
 *mulplt2vtse yyyymmdd-hhmm*
 
-* yyyymmdd-mmhh: name of input .tmp file (without eextension) created from mulplt.
+* yyyymmdd-mmhh: name of input .tmp file (with or without eextension) created from mulplt.
 * yyyymmdd-hhmm.txt: Output text file to be saved for string analysis.
 * yyyymmdd-hhmm-formatted.txt: Alternative output text file.
 

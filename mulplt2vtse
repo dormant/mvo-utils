@@ -6,8 +6,15 @@ then
 else
 	idString=$1
 
-    fileIn="${idString}.tmp"
-    fileOut="${idString}.txt"
+    if [[ "$idString" == *.tmp ]]; then
+        fileIn=${idString}
+    else
+        fileIn="${idString}.tmp"
+    fi
+    echo $fileIn
+
+    fileOut="${fileIn/tmp/txt}"
+    echo $fileOut
 
     mulplt2vtse.pl $fileIn > $fileOut
     echo -n "Number of events: "

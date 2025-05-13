@@ -7,7 +7,7 @@ Various scripts for processing and analysing MVO seismic data.
 
 * Extracts trigger information from *earthworm* carlslog files.
 * Plots triggering events using *getnPlot*.
-* Trigger lists stored in daily text files in */mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerLists*.
+* Trigger lists stored in daily text files in */mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerLists*. You have to manually move them to the year directories.
 * Trigger plots stored in */mnt/mvofls2/Seismic_Data/monitoring_data/triggers/carlslogTriggers/triggerPlots*.
 * Run daily as cronjobs on *opsproc3*.
 ```

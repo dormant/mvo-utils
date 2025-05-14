@@ -11,10 +11,8 @@ else
     else
         fileIn="${idString}.tmp"
     fi
-    echo $fileIn
 
     fileOut="${fileIn/tmp/txt}"
-    echo $fileOut
 
     mulplt2vtse.pl $fileIn > $fileOut
     echo -n "Number of events: "

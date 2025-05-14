@@ -23,11 +23,11 @@ fi
 
 
 if [ -n "$1" ]; then
-    tarFile=$HOSTNAME-$USER-`date +"%Y%m%d"`-level1.tar.gz
+    tarFile="${HOSTNAME}"-"${USER}"-`date +"%Y%m%d"`-level1.tar.gz
 else
-    tarFile=$HOSTNAME-$USER-`date +"%Y%m%d"`-level0.tar.gz
+    tarFile="${HOSTNAME}"-"${USER}"-`date +"%Y%m%d"`-level0.tar.gz
 fi
 
-snarFile=$HOSTNAME-$USER.snar
+snarFile="${HOSTNAME}"-"${USER}".snar
 
-tar -czf $dirBackup/$tarFile "${excludes}" -g $dirBackup/$snarFile /home/$USER >> /dev/null 2&>1
+tar -czf $dirBackup/$tarFile "${excludes}" -g $dirBackup/$snarFile /home/"${USER}" >> /dev/null 2&>1

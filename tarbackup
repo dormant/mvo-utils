@@ -16,18 +16,19 @@ if [[ $HOSTNAME == 'winston1' ]]; then
 elif [[ $HOSTNAME == 'opsrm04' || $HOSTNAME == 'opsrm05' || $HOSTNAME == 'opsrm06' ]]; then
     excludes=''
 elif [[ $HOSTNAME == 'opsproc3' ]]; then
-    excludes='--exclude=/home/seisan/data --exclude="home/seisan/Dropbox --exclude=/home/seisan/tmp* --exclude=/home/seisan/veryTmp*'
+    excludes='--exclude=/home/seisan/data --exclude=home/seisan/Dropbox --exclude=/home/seisan/tmp* --exclude=/home/seisan/veryTmp*'
 else
     excludes=''
 fi
 
 
+etad=`date +"%Y%m%d"`
 if [ -n "$1" ]; then
-    tarFile="${HOSTNAME}"-"${USER}"-`date +"%Y%m%d"`-level1.tar.gz
+    tarFile="$HOSTNAME-$USER-$etad-level1.tar.gz"
 else
-    tarFile="${HOSTNAME}"-"${USER}"-`date +"%Y%m%d"`-level0.tar.gz
+    tarFile="$HOSTNAME-$USER-$etad-level0.tar.gz"
 fi
 
-snarFile="${HOSTNAME}"-"${USER}".snar
+snarFile="$HOSTNAME-$USER.snar"
 
-tar -czf $dirBackup/$tarFile "${excludes}" -g $dirBackup/$snarFile /home/"${USER}" >> /dev/null 2&>1
+tar -czf $dirBackup/$tarFile $excludes -g $dirBackup/$snarFile /home/$USER >> /dev/null 2>&1

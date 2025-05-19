@@ -78,6 +78,14 @@ alias fe0='fetch_events.1.pl'
 
 *fetchHelis.sh yyyymmdd*
 
+## fetchMseed
+
+* Copies miniseed files for MV network for a given date to current directory.
+
+### Usage
+
+*fetchMseed yyyymmdd*
+
 ## fetchWWLLNlast24h.sh, fetchWWLLNyesterday.sh
 
 * Fetch data from the WWLLN Volcanic lightning monitor.

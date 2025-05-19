@@ -8,7 +8,7 @@
 dirBackup='/mnt/mvohvs3/MVOSeisD6/backups/cron'
 
 if [[ $HOSTNAME == 'winston1' ]]; then
-    if [ $USER == "mvo" ]; then
+    if [ $LOGNAME == "mvo" ]; then
         excludes='--exclude=/home/mvo/data'
     else
         excludes=''
@@ -24,11 +24,11 @@ fi
 
 etad=`date +"%Y%m%d"`
 if [ -n "$1" ]; then
-    tarFile="$HOSTNAME-$USER-$etad-level1.tar.gz"
+    tarFile="$HOSTNAME-$LOGNAME-$etad-level1.tar.gz"
 else
-    tarFile="$HOSTNAME-$USER-$etad-level0.tar.gz"
+    tarFile="$HOSTNAME-$LOGNAME-$etad-level0.tar.gz"
 fi
 
-snarFile="$HOSTNAME-$USER.snar"
+snarFile="$HOSTNAME-$LOGNAME.snar"
 
-tar -czf $dirBackup/$tarFile $excludes -g $dirBackup/$snarFile /home/$USER >> /dev/null 2>&1
+tar -czf $dirBackup/$tarFile $excludes -g $dirBackup/$snarFile /home/$LOGNAME >> /dev/null 2>&1

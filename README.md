@@ -1,5 +1,7 @@
 # mvo-utils
 
+## ~/src/utils
+
 Various scripts for processing and analysing MVO seismic data.
 
 

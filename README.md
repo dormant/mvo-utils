@@ -38,13 +38,6 @@ With no arguments, it lists the counts for the last seven days up to 13:00 UTC (
 
 There is an alias to run *counts* on opsproc2 over ssh: *countsop2*. It needs to be run twice to give the correct results. I have no idea why!
 
-## diary2doit.pl
-
-* Extracts information from *SeismicityDiary* files to create commands to run *getnPlot* for every event.
-* Should be used as part of a pipe, ie
-```
-$ /extractFromSpreadsheet.pl | grep Irish | diary2doit.pl > doit.sh
-```
 
 ## dodu
 

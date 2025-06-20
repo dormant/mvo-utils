@@ -1,4 +1,4 @@
-# mvo-utils
+# utils
 
 ## ~/src/utils
 
@@ -34,10 +34,9 @@ With no arguments, it lists the counts for the last seven days up to 13:00 UTC (
 
 ### Bugs / Issues
 
-*counts* does not work on opsproc3 because *volcstat* doesn't work.
+*counts* does not work on *opsproc3* for periods longer than about a month because of a bug in *volcstat*.
 
-There is an alias to run *counts* on opsproc2 over ssh: *countsop2*. It needs to be run twice to give the correct results. I have no idea why!
-
+There is an alias to run *counts* on opsproc2 over ssh: *countsop2*.
 
 ## dodu
 

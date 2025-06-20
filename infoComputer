@@ -1,0 +1,87 @@
+#!/bin/bash
+#
+# Lists setup information for a Linux computer
+#
+# R.C. Stewart 2024-07-09
+
+exec 2> /dev/null
+HOST=$(hostname)
+
+echo -n "infoComputer      ver "
+date --reference=$0
+date
+echo ""
+
+echo "HOST . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+hostname
+echo ""
+
+if [[ "$HOST" != "winston"* ]]; then
+    echo "HARDWARE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    inxi -b -c 0
+    #inxi -CmGD -c 0
+    echo ""
+fi
+
+echo "NETWORK . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+hostname -I | cut -d' ' -f1
+ifconfig | grep netmask
+#inxi -i -c 0
+echo ""
+
+if [[ "$HOST" != "winston"* ]]; then
+    echo "DISKS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    inxi -D -c 0
+    echo ""
+fi
+
+echo "MOUNTS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+df -h | grep /mnt
+echo ""
+
+echo "MEMORY . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+free -h
+echo ""
+
+echo "TOP . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+top -b -n 1 | head -4
+echo ""
+
+echo "UPTIME AND LAST REBOOT . . . . . . . . . . . . . . . . . . . . . . . . ."
+last | tail -6
+echo ""
+
+echo "TIME . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+timedatectl status
+ntpq -p | head -8
+echo ""
+
+echo "USERS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+getent passwd {1000..60000}
+echo ""
+
+echo "GROUPS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+groups
+getent group sudo
+getent group mvo
+echo ""
+
+echo "HOME DIRECTORIES . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+ls ~ | grep -e ^bin -e ^data -e ^log -e ^src -e ^tmp$
+echo ""
+
+echo "INSTALLED APT PACKAGES . . . . . . . . . . . . . . . . . . . . . . . . ."
+apt list --installed | grep -e inxi -e logrotate -e ntp -e rsnapshot -e rsync
+echo ""
+
+if [[ "$HOST" == "winston"* ]]; then
+
+    echo "WINSTON WAVE SERVER . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    systemctl status wws | head -3 | ansi2txt
+    systemctl status importew | head -3 | ansi2txt
+    mysql -V 
+    echo ""
+
+fi
+
+exec 2>&1

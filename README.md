@@ -108,6 +108,18 @@ alias fe0='fetch_events.1.pl'
 * Converts every eps file in current directory.
 * png files are cropped and modified.
 
+## infoComputer
+
+* Lists setup information for a Linux computer.
+
+### Usage
+```
+$ infoComputer > infoComputer-winston1.txt
+```
+### Bugs
+
+* Doesn't detect hardware or disks on virtual computers: *inxi* doesn't work.
+
 ## installligbfortran3.sh
 
 * Downloaded script to install *libgfortran3* on a modern *Linux*.
@@ -129,7 +141,9 @@ Scripts used when processing VT strings with *mulplt*.
 
 ### Usage
 
-*mulplt2vtse yyyymmdd-hhmm*
+```
+$ mulplt2vtse yyyymmdd-hhmm
+```
 
 * yyyymmdd-mmhh: name of input .tmp file (with or without eextension) created from mulplt.
 * yyyymmdd-hhmm.txt: Output text file to be saved for string analysis.

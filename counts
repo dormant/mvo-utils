@@ -80,4 +80,4 @@ set disp_end_day = `date --date="$disp_end_date" +%a`
 echo "Counts for the period "$disp_start_day" "$disp_start_date":00 UTC to "$disp_end_day" "$disp_end_date":00 UTC"
 cat volcstat_counts_total.out | sed s'/e    /LPRFs/'g | sed s'/r  /RFs/'g | sed s'/h      /Hybrids/'g | sed s'/t  /VTs/'g | sed s'/l  /LPs/'g | sed s'/x     /Expls./'g
 
-echo "Weekly report only gives VTs, LPs, Hybrids and Rockfalls: add LPRF count to both LPs and RFs"
+echo "Weekly report only reports VTs, LPs, Hybrids and Rockfalls: add LPRF count to both LPs and RFs"

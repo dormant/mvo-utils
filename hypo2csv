@@ -1,0 +1,27 @@
+#!/usr/bin/env perl
+#
+# Changes text file with hypocentres in following format to format suitable for gpsbabel
+# yyyymmdd-hhmm yyyy-mm-dd hh:mm:ss lat lon dep mag
+#
+# Rod Stewart, 2025-07-18
+
+use strict;
+use warnings;
+
+my $fileIn = $ARGV[0];
+my $fileOut = join( '.', $fileIn, 'csv' );
+
+open my $in, $fileIn or die $!;
+open my $out, '>', $fileOut or die $!;
+
+while( my $line = <$in>)  {   
+
+    chomp $line;
+    my @bits = split( ' ', $line );
+    my $lineOut = join( ',', $bits[3], $bits[4], join( ' ', @bits ) );
+    print $out $lineOut, "\n";
+}
+
+
+close( $in );
+close( $out );

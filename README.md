@@ -107,6 +107,15 @@ alias fe0='fetch_events.1.pl'
 * Converts every eps file in current directory.
 * png files are cropped and modified.
 
+## hypo2csv
+
+* Converts text file with hypocentre information to a csv file suitable for *gpsbabel*.
+
+### Usage
+```
+$ hypo2csv dataFile.txt
+```
+
 ## infoComputer
 
 * Lists setup information for a Linux computer.

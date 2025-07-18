@@ -18,7 +18,8 @@ while( my $line = <$in>)  {
 
     chomp $line;
     my @bits = split( ' ', $line );
-    my $lineOut = join( ',', $bits[3], $bits[4], join( ' ', @bits ) );
+    #my $lineOut = join( ',', $bits[3], $bits[4], join( ' ', @bits ) );
+    my $lineOut = join( ',', $bits[3], $bits[4], $bits[0] );
     print $out $lineOut, "\n";
 }
 

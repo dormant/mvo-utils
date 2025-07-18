@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Changes text file with hypocentres in following format to format suitable for gpsbabel
+# Changes text file with hypocentres in following format to format suitable for gpsbabel and to kml file
 # yyyymmdd-hhmm yyyy-mm-dd hh:mm:ss lat lon dep mag
 #
 # Rod Stewart, 2025-07-18
@@ -10,6 +10,7 @@ use warnings;
 
 my $fileIn = $ARGV[0];
 my $fileOut = join( '.', $fileIn, 'csv' );
+my $fileKml = join( '.', $fileIn, 'kml' );
 
 open my $in, $fileIn or die $!;
 open my $out, '>', $fileOut or die $!;
@@ -23,6 +24,8 @@ while( my $line = <$in>)  {
     print $out $lineOut, "\n";
 }
 
-
 close( $in );
 close( $out );
+
+my $cmd = join( ' ', 'gpsbabel -i csv -f', $fileOut, '-o kml -F', $fileKml );
+system( $cmd );
